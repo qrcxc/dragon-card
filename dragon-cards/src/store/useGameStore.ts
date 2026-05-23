@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import type { RiskLevel, DragonCard, GameState } from '../types/game';
+import type { RiskLevel, GameState } from '../types/game';
 import { RISK_LEVELS, DRAGON_TYPES, MAX_BET } from '../config/gameConfig';
 import { playSFX, manageBGMusic } from '../utils/audioManager';
 
