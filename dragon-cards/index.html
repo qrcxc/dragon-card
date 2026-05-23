@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dragon Cards</title>
+
+    <!-- ШРИФТИ -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;700;900&family=Rubik:wght@900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- TAILWIND CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              bebas: ["Bebas Neue", "cursive"],
+              rubik: ["Rubik", "sans-serif"],
+            },
+            colors: {
+              panel: "#151d2c",
+              "dark-bg": "#0b0f16",
+              "accent-blue": "#0066ff",
+              "risk-active": "#f59e0b",
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      /* ЗАГАЛЬНІ СТИЛІ */
+      body {
+        margin: 0;
+        background-color: #0b0f16;
+        color: white;
+        overflow: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* СТИЛІ ПРЕЛОАДЕРА */
+      #preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #0b0f16;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition:
+          opacity 0.8s ease,
+          visibility 0.8s ease;
+      }
+
+      /* Клас для приховування (щоб кнопки працювали) */
+      #preloader.hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      .logo-icon {
+        width: 32px;
+        height: 32px;
+        background: linear-gradient(135deg, #ff4b81 0%, #ffbc00 100%);
+        border-radius: 50%;
+        position: relative;
+        margin-right: 12px;
+      }
+
+      .logo-icon::after {
+        content: "";
+        position: absolute;
+        bottom: 4px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 14px;
+        height: 6px;
+        background: rgba(255, 255, 255, 0.4);
+        border-radius: 10px;
+      }
+
+      .progress-container {
+        width: 250px;
+        height: 3px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+        margin-top: 20px;
+        overflow: hidden;
+      }
+
+      .progress-bar {
+        width: 0%;
+        height: 100%;
+        background: linear-gradient(90deg, #8653fc, #a64cf4);
+        animation: loadAnim 2.2s ease-in-out forwards;
+      }
+
+      /* АНІМАЦІЯ ЛІНІЇ - ТЕПЕР ВОНА ТУТ, У STYLE */
+      @keyframes loadAnim {
+        0% {
+          width: 0%;
+        }
+        100% {
+          width: 100%;
+        }
+      }
+
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ЕКРАН ЗАВАНТАЖЕННЯ -->
+    <div id="preloader">
+      <div style="display: flex; align-items: center">
+        <div class="logo-icon"></div>
+        <span
+          style="
+            color: white;
+            font-family: &quot;Rubik&quot;;
+            font-weight: 900;
+            font-size: 32px;
+            letter-spacing: -1px;
+          "
+          >EVOGAMING</span
+        >
+      </div>
+      <div class="progress-container">
+        <div class="progress-bar"></div>
+      </div>
+    </div>
+
+    <!-- REACT ROOT -->
+    <div id="root"></div>
+
+    <!-- ПІДКЛЮЧЕННЯ СКРИПТІВ -->
+    <script type="module" src="/src/main.tsx"></script>
+
+    <script>
+      // СКРИПТ ПРИХОВУВАННЯ
+      window.addEventListener("load", () => {
+        const preloader = document.getElementById("preloader");
+
+        // Даємо анімації лінії 2.2 секунди
+        setTimeout(() => {
+          preloader.classList.add("hidden"); // Робимо прозорим і вимикаємо блок кліків
+
+          // Повністю видаляємо через 1 секунду після зникнення
+          setTimeout(() => {
+            preloader.style.display = "none";
+          }, 1000);
+        }, 2500);
+      });
+    </script>
+  </body>
+</html>

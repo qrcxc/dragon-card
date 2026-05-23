@@ -1,0 +1,10 @@
+:root {
+  --color-bg: #0b0f16;
+  --color-panel: #151d2c;
+  --color-accent: #3b82f6;
+  --color-win: #22c55e;
+  --color-lost: #ef4444;
+  
+  --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6);
+  --font-main: 'Inter', system-ui, sans-serif;
+}
