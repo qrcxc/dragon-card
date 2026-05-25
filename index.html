@@ -2,40 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- Використовуємо PNG іконку, яку ми додали в public -->
+    <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dragon Cards</title>
+    <title>Dragon Cards — EvoGaming</title>
 
-    <!-- ШРИФТИ -->
+    <!-- ШРИФТИ (Залишаємо в HTML для швидкого завантаження) -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;700;900&family=Rubik:wght@900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;700;900&family=Rubik:wght@900&display=swap"
       rel="stylesheet"
     />
 
-    <!-- TAILWIND CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ["Inter", "sans-serif"],
-              bebas: ["Bebas Neue", "cursive"],
-              rubik: ["Rubik", "sans-serif"],
-            },
-            colors: {
-              panel: "#151d2c",
-              "dark-bg": "#0b0f16",
-              "accent-blue": "#0066ff",
-              "risk-active": "#f59e0b",
-            },
-          },
-        },
-      };
-    </script>
-
     <style>
-      /* ЗАГАЛЬНІ СТИЛІ */
+      /* СТИЛІ ПРЕЛОАДЕРА (Вбудовані, щоб вони з'явилися миттєво до завантаження JS) */
       body {
         margin: 0;
         background-color: #0b0f16;
@@ -44,7 +23,6 @@
         -webkit-font-smoothing: antialiased;
       }
 
-      /* СТИЛІ ПРЕЛОАДЕРА */
       #preloader {
         position: fixed;
         top: 0;
@@ -62,7 +40,6 @@
           visibility 0.8s ease;
       }
 
-      /* Клас для приховування (щоб кнопки працювали) */
       #preloader.hidden {
         opacity: 0;
         visibility: hidden;
@@ -106,7 +83,6 @@
         animation: loadAnim 2.2s ease-in-out forwards;
       }
 
-      /* АНІМАЦІЯ ЛІНІЇ - ТЕПЕР ВОНА ТУТ, У STYLE */
       @keyframes loadAnim {
         0% {
           width: 0%;
@@ -116,6 +92,7 @@
         }
       }
 
+      /* Глобальне приховування стрілок в інпутах */
       input::-webkit-outer-spin-button,
       input::-webkit-inner-spin-button {
         -webkit-appearance: none;
@@ -131,35 +108,32 @@
         <span
           style="
             color: white;
-            font-family: &quot;Rubik&quot;;
+            font-family: &quot;Rubik&quot;, sans-serif;
             font-weight: 900;
             font-size: 32px;
             letter-spacing: -1px;
           "
-          >EVOGAMING</span
         >
+          EVOGAMING
+        </span>
       </div>
       <div class="progress-container">
         <div class="progress-bar"></div>
       </div>
     </div>
 
-    <!-- REACT ROOT -->
+    <!-- КОРІНЬ ПРОЄКТУ -->
     <div id="root"></div>
 
-    <!-- ПІДКЛЮЧЕННЯ СКРИПТІВ -->
+    <!-- ПІДКЛЮЧЕННЯ ЛОГІКИ (Vite сам обробить Tailwind через імпорти в main.tsx) -->
     <script type="module" src="/src/main.tsx"></script>
 
     <script>
-      // СКРИПТ ПРИХОВУВАННЯ
+      // Логіка приховування прелоадера
       window.addEventListener("load", () => {
         const preloader = document.getElementById("preloader");
-
-        // Даємо анімації лінії 2.2 секунди
         setTimeout(() => {
-          preloader.classList.add("hidden"); // Робимо прозорим і вимикаємо блок кліків
-
-          // Повністю видаляємо через 1 секунду після зникнення
+          preloader.classList.add("hidden");
           setTimeout(() => {
             preloader.style.display = "none";
           }, 1000);

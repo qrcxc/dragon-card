@@ -20,5 +20,6 @@ export interface GameState {
   isMuted: boolean;
   selectedCardIndex: number | null;
   activePosition: number | null;
-  matchedIndices: number[]; // ОБОВ'ЯЗКОВО ДОДАЙ ЦЕЙ РЯДОК
+  matchedIndices: number[];
+  slotMultipliers: (number | 'LOST')[];
 }
